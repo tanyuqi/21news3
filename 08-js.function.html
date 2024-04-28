@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>红楼梦人物随机介绍生成器</title>
+    <style>
+         body {
+            font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0e6f6;
+            color: #532f2f;
+            line-height: 1.6;
+            margin: 0;
+            display: flex; /* 使用弹性盒子布局 */
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            min-height: 100vh; /* 至少为视口高度 */
+            background-image: url('chinese_pattern.png');
+            background-size: cover;
+            padding: 20px; /* 为页面内容添加一些内边距 */
+        }
+        .container {
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+        }
+        #generateBtn {
+            padding: 10px 30px;
+            font-size: 20px;
+            border: none;
+            background-color: #d32f2f;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: 1px solid #b22222;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        #generateBtn:hover {
+            background-color: #ad2b2b;
+        }
+        #intro {
+            margin-top: 30px;
+            padding: 10px;
+            background-color: rgba(233, 236, 239, 0.5);
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2f2f2f;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        .chinese-decorative {
+            color: #d32f2f;
+            font-size: 24px;
+            text-shadow: 0 0 5px #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <button id="generateBtn">生成人物介绍</button>
+    <div id="intro"></div>
+
+    <script>
+        // 人物属性数组
+        const names = ['贾宝玉', '林黛玉', '薛宝钗', '王熙凤', '史湘云'];
+        const origins = ['贵族', '官员家庭', '商贾之家', '书香门第'];
+        const personalities = ['聪明', '机智', '温柔', '豪爽', '内敛'];
+        const charms = ['才华横溢', '容貌出众', '机智过人', '心地善良', '风趣幽默'];
+
+        // 从数组中随机选择一个元素的函数
+        function selectRandomProperty(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        // 生成随机人物介绍的函数
+        function generateCharacterIntroduction() {
+            const name = selectRandomProperty(names);
+            const origin = selectRandomProperty(origins);
+            const personality = selectRandomProperty(personalities);
+            const charm = selectRandomProperty(charms);
+            
+            // 构造人物介绍字符串
+            return `名字：${name}<br>
+                    出身：${origin}<br>
+                    性格：${personality}<br>
+                    魅力：${charm}`;
+        }
+
+        // 当文档加载完成后，给按钮添加点击事件监听器
+        document.addEventListener('DOMContentLoaded', function() {
+            const generateBtn = document.getElementById('generateBtn');
+            const introDiv = document.getElementById('intro');
+
+            generateBtn.addEventListener('click', function() {
+                const intro = generateCharacterIntroduction();
+                introDiv.innerHTML = intro;
+            });
+        });
+    </script>
+</body>
+</html>
